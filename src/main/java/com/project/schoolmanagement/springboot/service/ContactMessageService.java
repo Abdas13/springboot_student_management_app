@@ -2,6 +2,7 @@ package com.project.schoolmanagement.springboot.service;
 
 import com.project.schoolmanagement.springboot.entity.concretes.ContactMessage;
 import com.project.schoolmanagement.springboot.exception.ConflictException;
+import com.project.schoolmanagement.springboot.exception.ResourceNotFoundException;
 import com.project.schoolmanagement.springboot.payload.reponse.ContactMessageResponse;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.request.ContactMessageRequest;
@@ -100,5 +101,21 @@ public class ContactMessageService {
     }
 
 
+    public ResponseMessage deleteMessageById(Long id) {
+        isContactMessageExist(id);
+        contactMessageRepository.deleteById(id);
 
+        return ResponseMessage.builder()
+                .message("Contact Message deleted successfully ")
+                .httpStatus(HttpStatus.OK)
+                .build();
+
+    }
+    private ContactMessage isContactMessageExist(Long id) {
+
+        return contactMessageRepository
+                .findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(Messages.USER_MESSAGE_NOT_FOUND)));//change it
+
+    }
 }

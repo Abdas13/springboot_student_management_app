@@ -53,6 +53,10 @@ public class ContactMessageController {
 
         return contactMessageService.searchBySubject(subject, page, size, sort, type);
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseMessage deleteMessageById(@PathVariable Long id){
+        return contactMessageService.deleteMessageById(id);
+    }
 
     //TODO
     // 1- DELETE by ID,

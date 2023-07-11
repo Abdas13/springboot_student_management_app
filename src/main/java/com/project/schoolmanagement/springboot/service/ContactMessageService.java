@@ -115,7 +115,17 @@ public class ContactMessageService {
 
         return contactMessageRepository
                 .findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException(String.format(Messages.USER_MESSAGE_NOT_FOUND)));//change it
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(Messages.USER_MESSAGE_NOT_FOUND)));
+
+    }
+
+    public ResponseMessage<ContactMessageResponse> updateContactMessage(Long id, ContactMessageRequest contactMessageRequest) {
+
+      ContactMessage contactMessage = isContactMessageExist(id);
+
+      return null;  //complete it
+
+
 
     }
 }

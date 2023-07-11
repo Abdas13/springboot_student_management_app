@@ -58,8 +58,14 @@ public class ContactMessageController {
         return contactMessageService.deleteMessageById(id);
     }
 
+    @PutMapping
+    public ResponseMessage<ContactMessageResponse> updateMessageById(@PathVariable Long id,
+                                                                     @RequestBody @Valid ContactMessageRequest contactMessageRequest){
+        return contactMessageService.updateContactMessage(id, contactMessageRequest);
+    }
+
     //TODO
-    // 1- DELETE by ID,
-    // 2- UPDATE
+    // 1- DELETE by ID,  Done
+    // 2- UPDATE,
     // 3- GET All messages as a list
 }

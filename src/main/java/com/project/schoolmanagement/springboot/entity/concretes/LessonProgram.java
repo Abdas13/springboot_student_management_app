@@ -2,6 +2,7 @@ package com.project.schoolmanagement.springboot.entity.concretes;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.schoolmanagement.springboot.entity.enums.Day;
 import jakarta.persistence.*;
@@ -11,7 +12,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -22,12 +22,11 @@ import java.util.Set;
 @Builder(toBuilder = true)
 public class LessonProgram implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Day day;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "US")
@@ -36,10 +35,16 @@ public class LessonProgram implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "US")
     private LocalTime stopTime;
 
+    @JsonIgnore
     @ManyToMany
+    @JoinTable(
+            name = "lesson_program_lesson",
+            joinColumns = @JoinColumn(name = "lessonprogram_id"),
+            inverseJoinColumns = @JoinColumn(name = "lesson_id")
+    )
     private Set<Lesson> lesson;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private EducationTerm educationTerm;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

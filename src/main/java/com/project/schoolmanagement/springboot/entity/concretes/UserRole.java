@@ -19,7 +19,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private RoleType roleType;
 

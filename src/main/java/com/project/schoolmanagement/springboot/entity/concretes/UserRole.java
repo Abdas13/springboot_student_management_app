@@ -1,6 +1,5 @@
 package com.project.schoolmanagement.springboot.entity.concretes;
 
-
 import com.project.schoolmanagement.springboot.entity.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +22,5 @@ public class UserRole {
     @Enumerated
     @Column(length = 20)
     private RoleType roleType;
-
 
 }

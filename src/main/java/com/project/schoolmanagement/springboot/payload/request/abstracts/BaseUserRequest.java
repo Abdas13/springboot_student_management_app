@@ -47,12 +47,12 @@ public abstract class BaseUserRequest {
     private String ssn;
 
     @NotNull(message = "Please enter your birthplace")
-    @Size(min = 2, max = 16,message = "Your birthplace should be at least 2 chars")
+    @Size(min = 2, max = 16,message = "Your birthplace should be at least 2 chars at most 16 chars")
     @Pattern(regexp = "\\A(?!\\s*\\Z).+", message = "Your birthplace must consist of the characters .")
     private String birthPlace;
 
     @NotNull(message = "Please enter your password")
-    @Size(min = 8, max = 60,message = "Your password should be at least 8 chars or maximum 60 characters")
+    @Size(min = 8, max = 60, message = "Your password should be at least 8 chars or maximum 60 characters")
     //@Size(max =60, message = "Your password should be at most 60 chars.)
     //@Size(min = 8, message = "Your password should be at least 8 chars
     //password syntax validation could be a good feature.

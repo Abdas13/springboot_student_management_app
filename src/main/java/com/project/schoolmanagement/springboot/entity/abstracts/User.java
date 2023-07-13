@@ -1,6 +1,7 @@
 package com.project.schoolmanagement.springboot.entity.abstracts;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.schoolmanagement.springboot.entity.concretes.UserRole;
 import com.project.schoolmanagement.springboot.entity.enums.Gender;
@@ -34,7 +35,7 @@ public abstract class User {
     private String lastname;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate birthDay;
+    private LocalDate birthday;
 
     private String birthPlace;
 
@@ -48,6 +49,7 @@ public abstract class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY )
     private UserRole userRole;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
 

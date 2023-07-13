@@ -3,7 +3,7 @@ package com.project.schoolmanagement.springboot.repository;
 import com.project.schoolmanagement.springboot.entity.concretes.ViceDean;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ViceDeanRepository extends JpaRepository {
+public interface ViceDeanRepository extends JpaRepository<ViceDean, Long> {
 
     boolean existsByUsername(String username);
 

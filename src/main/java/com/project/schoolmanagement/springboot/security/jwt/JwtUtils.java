@@ -21,10 +21,12 @@ public class JwtUtils {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${backendapi.app.jwtExpirationMs}")
+   // @Value("${backendapi.app.jwtExpirationMs}")
+    @Value("8640000")
     private long jwtExpirationMs;
 
-    @Value("${backendapi.app.jwtSecret}")
+    //@Value("${backendapi.app.jwtSecret}")
+    @Value("schoolmanagementproject")
     private String jwtSecret;
 
     public String generateJwtToken(Authentication authentication){
@@ -50,6 +52,10 @@ public class JwtUtils {
         }
         return false;
     }
+    /**
+     * @param username as String
+     * @return JWT signed with algorithm and our jwtSecret key
+     */
 
     public String generateTokenFromUsername(String username){
 
@@ -57,10 +63,10 @@ public class JwtUtils {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.ES512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
-    public String getUsernameFromJwtToken(String token){
+    public String getUserNameFromJwtToken(String token){
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)

@@ -3,7 +3,6 @@ package com.project.schoolmanagement.springboot.security.service;
 
 import com.project.schoolmanagement.springboot.entity.concretes.*;
 import com.project.schoolmanagement.springboot.repository.*;
-import com.project.schoolmanagement.springboot.service.AdminService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

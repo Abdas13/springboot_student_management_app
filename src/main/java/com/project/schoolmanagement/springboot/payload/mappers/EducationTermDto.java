@@ -20,6 +20,22 @@ public class EducationTermDto {
                 .lastRegistrationDate(educationTermRequest.getLastRegistrationDate())
                 .build();
     }
+    public EducationTerm mapEducationTermRequestToUpdatedEducationTerm(Long id, EducationTermRequest educationTermRequest){
+
+
+        return mapEducationTermRequestToEducationTerm(educationTermRequest).toBuilder()
+                .id(id)
+                .build();
+
+                // long way
+//        return EducationTerm.builder()
+//                .id(id)
+//                .term(educationTermRequest.getTerm())
+//                .startDate(educationTermRequest.getStartDate())
+//                .endDate(educationTermRequest.getEndDate())
+//                .lastRegistrationDate(educationTermRequest.getLastRegistrationDate())
+//                .build();
+    }
 
     public EducationTermResponse mapEducationTermToEducationTermResponse(EducationTerm educationTerm){
 

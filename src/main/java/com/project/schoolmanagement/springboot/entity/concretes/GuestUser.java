@@ -2,8 +2,7 @@ package com.project.schoolmanagement.springboot.entity.concretes;
 
 
 import com.project.schoolmanagement.springboot.entity.abstracts.User;
-import jakarta.persistence.Entity;
-import lombok.Data;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

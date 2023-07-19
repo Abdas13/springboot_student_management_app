@@ -5,7 +5,9 @@ import com.project.schoolmanagement.springboot.entity.enums.RoleType;
 import com.project.schoolmanagement.springboot.payload.reponse.DeanResponse;
 import com.project.schoolmanagement.springboot.payload.request.DeanRequest;
 import com.project.schoolmanagement.springboot.service.UserRoleService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component

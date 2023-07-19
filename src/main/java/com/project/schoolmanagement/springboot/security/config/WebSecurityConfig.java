@@ -1,6 +1,5 @@
 package com.project.schoolmanagement.springboot.security.config;
 
-
 import com.project.schoolmanagement.springboot.security.jwt.AuthEntryPointJwt;
 import com.project.schoolmanagement.springboot.security.jwt.AuthTokenFilter;
 import com.project.schoolmanagement.springboot.security.service.UserDetailsServiceImpl;
@@ -21,11 +20,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
 @EnableWebSecurity
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 /**
  * this class is the main configuration class of SECURITY.
  * All implementation will be injected in this class and be used as configuration.
@@ -45,20 +43,24 @@ public class WebSecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.cors().and().csrf().disable()
-//                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).sessionAuthenticationFailureHandler()
-//                .authorizeRequests().andMatchers(AUTH_WHITE_LIST).permitAll()
-//                .anyRequest().authenticated();
-//
-//        http.headers().frameOptions().sameOrigin();
+        http.cors().and()
+                .csrf().disable()
+                //we configured unauthorized exception handler
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                //we configured session management
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                // we added white list
+                .authorizeRequests().antMatchers(AUTH_WHITE_LIST).permitAll()
+                // except white list we authenticate all request
+                .anyRequest().authenticated();
+
+        http.headers().frameOptions().sameOrigin();
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+
     }
-
-
 
 
 
@@ -120,8 +122,4 @@ public class WebSecurityConfig {
 
     };
 
-
-
-
 }
-

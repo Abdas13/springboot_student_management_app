@@ -4,8 +4,9 @@ package com.project.schoolmanagement.springboot.entity.concretes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.schoolmanagement.springboot.entity.enums.Term;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

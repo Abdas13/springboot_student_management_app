@@ -1,16 +1,17 @@
 package com.project.schoolmanagement.springboot.entity.abstracts;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.schoolmanagement.springboot.entity.concretes.UserRole;
 import com.project.schoolmanagement.springboot.entity.enums.Gender;
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @MappedSuperclass

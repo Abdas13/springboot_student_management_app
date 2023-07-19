@@ -2,8 +2,9 @@ package com.project.schoolmanagement.springboot.entity.concretes;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Getter

@@ -1,7 +1,7 @@
 package com.project.schoolmanagement.springboot.entity.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -4,11 +4,16 @@ package com.project.schoolmanagement.springboot.utility;
 import com.project.schoolmanagement.springboot.exception.ConflictException;
 import com.project.schoolmanagement.springboot.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class FieldControl {
+public class ServiceHelpers {
 
     private final AdminRepository adminRepository;
 
@@ -48,6 +53,14 @@ public class FieldControl {
         } else if (studentRepository.existsByEmail(email) || teacherRepository.existsByEmail(email)) {
             throw new ConflictException(String.format(Messages.ALREADY_REGISTER_MESSAGE_SSN, email));
         }
+    }
+    public Pageable getPageableWithProperties(int page, int size, String sort, String type ){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort).ascending());
+
+        if (Objects.equals(type, "desc")){
+            pageable = PageRequest.of(page, size,Sort.by(sort).descending());
+        }
+        return pageable;
     }
 
     // As a requirement all Admin, ViceAdmin, Dean, Student, Teacher, GuestUser

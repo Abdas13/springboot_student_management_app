@@ -1,19 +1,19 @@
 package com.project.schoolmanagement.springboot.service;
 
 import com.project.schoolmanagement.springboot.entity.concretes.Admin;
-import com.project.schoolmanagement.springboot.entity.concretes.UserRole;
 import com.project.schoolmanagement.springboot.entity.enums.RoleType;
 import com.project.schoolmanagement.springboot.exception.ConflictException;
 import com.project.schoolmanagement.springboot.payload.reponse.AdminResponse;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.request.AdminRequest;
 import com.project.schoolmanagement.springboot.repository.*;
-import com.project.schoolmanagement.springboot.utility.FieldControl;
+import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import com.project.schoolmanagement.springboot.utility.Messages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -37,24 +37,28 @@ public class AdminService {
 
     private final UserRoleService userRoleService;
 
-    private final FieldControl fieldControl;
+    private final ServiceHelpers serviceHelpers;
+
+    private final PasswordEncoder passwordEncoder;
 
 
     public ResponseMessage save(AdminRequest adminRequest){
 
-        fieldControl.checkDuplicate(adminRequest.getUsername(), adminRequest.getSsn(), adminRequest.getPhoneNumber());
+        serviceHelpers.checkDuplicate(adminRequest.getUsername(), adminRequest.getSsn(), adminRequest.getPhoneNumber());
 
         Admin admin = mapAdminRequestToAdmin(adminRequest);
-        admin.setBuilt_in(false);
+        admin.setBuiltIn(false);
 
         // if username is also Admin we are setting built_in prop. to FALSE
         if (Objects.equals(adminRequest.getUsername(), "Admin")){
-            admin.setBuilt_in(true);
+            admin.setBuiltIn(true);
         }
 
        admin.setUserRole(userRoleService.getUserRole(RoleType.ADMIN));
         //
         // we will implement password here
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+
         Admin savedAdmin = adminRepository.save(admin);
 
         // in response message savedAdmin instance may not be sent back to front-end
@@ -103,7 +107,7 @@ public class AdminService {
         //we should check the database if it really exists
         Optional<Admin> admin = adminRepository.findById(id);
         //TODO please divide the cases and throw meaningful response messages
-        if(admin.isPresent() && admin.get().isBuilt_in()){
+        if(admin.isPresent() && admin.get().isBuiltIn()){
             throw new ConflictException(Messages.NOT_PERMITTED_METHOD_MESSAGE);
         }
 

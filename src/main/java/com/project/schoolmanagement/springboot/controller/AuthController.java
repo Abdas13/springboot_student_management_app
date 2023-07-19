@@ -5,8 +5,6 @@ import com.project.schoolmanagement.springboot.payload.reponse.AuthResponse;
 import com.project.schoolmanagement.springboot.payload.request.LoginRequest;
 import com.project.schoolmanagement.springboot.security.jwt.JwtUtils;
 import com.project.schoolmanagement.springboot.security.service.UserDetailsImpl;
-import com.project.schoolmanagement.springboot.security.service.UserDetailsServiceImpl;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;

@@ -2,16 +2,13 @@ package com.project.schoolmanagement.springboot.payload.request.abstracts;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.schoolmanagement.springboot.entity.enums.Gender;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @SuperBuilder

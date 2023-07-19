@@ -3,12 +3,13 @@ package com.project.schoolmanagement.springboot.security.service;
 
 import com.project.schoolmanagement.springboot.entity.concretes.*;
 import com.project.schoolmanagement.springboot.repository.*;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 @AllArgsConstructor

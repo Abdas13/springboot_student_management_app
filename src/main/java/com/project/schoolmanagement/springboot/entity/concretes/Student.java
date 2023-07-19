@@ -3,7 +3,7 @@ package com.project.schoolmanagement.springboot.entity.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.schoolmanagement.springboot.entity.abstracts.User;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

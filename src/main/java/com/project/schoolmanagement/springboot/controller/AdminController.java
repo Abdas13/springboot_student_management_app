@@ -3,7 +3,6 @@ package com.project.schoolmanagement.springboot.controller;
 import com.project.schoolmanagement.springboot.entity.concretes.Admin;
 import com.project.schoolmanagement.springboot.payload.request.AdminRequest;
 import com.project.schoolmanagement.springboot.service.AdminService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 @RestController
@@ -23,6 +23,7 @@ public class AdminController {
 
     private final AdminService adminService;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody @Valid AdminRequest adminRequest){
 
@@ -30,6 +31,7 @@ public class AdminController {
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<Page<Admin>> getAll(
             @RequestParam (value = "page", defaultValue = "0") int page,
             @RequestParam (value = "size", defaultValue = "10") int size,
@@ -50,6 +52,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<String> delete(@PathVariable Long id){
 
 

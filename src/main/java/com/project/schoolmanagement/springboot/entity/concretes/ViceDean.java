@@ -2,7 +2,8 @@ package com.project.schoolmanagement.springboot.entity.concretes;
 
 
 import com.project.schoolmanagement.springboot.entity.abstracts.User;
-import jakarta.persistence.Entity;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 //@AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 public class ViceDean extends User {
 

@@ -58,10 +58,12 @@ public class EducationTermController {
     }
 
     @PutMapping("/update/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     public ResponseMessage<EducationTermResponse> updateEducationTerm(@PathVariable Long id,
                                                                       @RequestBody @Valid EducationTermRequest educationTermRequest){
 
         return educationTermService.updateEducationTerm(id,educationTermRequest);
     }
+    // TODO write down a request that gets all the education terms start a specific date
+
 }

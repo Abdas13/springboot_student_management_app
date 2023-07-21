@@ -26,6 +26,8 @@ public class EducationTermService {
 
     private final ServiceHelpers serviceHelpers;
     private final EducationTermDto educationTermDto;
+    public AdminService lessonProgramRepository;
+
     public ResponseMessage<EducationTermResponse> saveEducationTerm(EducationTermRequest educationTermRequest) {
 
         checkEducationTermDate(educationTermRequest);
@@ -57,7 +59,17 @@ public class EducationTermService {
         return isEducationTermExist(id);
     }
 
-    private EducationTerm isEducationTermExist(Long id) {
+    public EducationTermResponse getEducationTermResponseById(Long id) {
+
+//		return educationTermDto.mapEducationTermToEducationTermResponse
+//				(educationTermRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Could not find Education term with id " + id)));
+
+        EducationTerm term = isEducationTermExist(id);
+
+        return educationTermDto.mapEducationTermToEducationTermResponse(term);
+    }
+
+        private EducationTerm isEducationTermExist(Long id) {
 
         EducationTerm educationTerm = educationTermRepository.findByIdEquals(id);
 

@@ -2,16 +2,16 @@ package com.project.schoolmanagement.springboot.repository;
 
 import com.project.schoolmanagement.springboot.entity.concretes.Lesson;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Map;
+import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
+import java.util.Set;
 
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
     boolean existsLessonByLessonNameEqualsIgnoreCase(String lessonName);
 
-
-    void findByLessonName(String lessonName);
-
     Optional<Lesson> getLessonByLessonName(String lessonName);
+
+    @Query(value = "SELECT l FROM Lesson l WHERE l.lessonId IN :lessons")
+    Set<Lesson> getLessonByLessonIdList(Set<Long> lessons);
 }

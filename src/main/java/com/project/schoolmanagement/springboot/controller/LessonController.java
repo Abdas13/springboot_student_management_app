@@ -1,6 +1,7 @@
 package com.project.schoolmanagement.springboot.controller;
 
 
+import com.project.schoolmanagement.springboot.entity.concretes.Lesson;
 import com.project.schoolmanagement.springboot.payload.reponse.LessonResponse;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.request.LessonRequest;
@@ -11,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @RestController
 @RequestMapping("lessons")
@@ -47,4 +49,20 @@ public class LessonController {
             @RequestParam(value = "type") String type){
         return lessonService.findLessonByPage(page,size,sort,type);
     }
+
+    @GetMapping("/getLessonByLessonId")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    public Set<Lesson> getAllLessonsByLessonId(@RequestParam (name = "lessonId") Set<Long> idSet){
+       return  lessonService.getLessonByLessonIdSet(idSet);
+    }
+    // TODO updateLessonById
+
+    public ResponseMessage<LessonResponse> updateLesson(@PathVariable Long lessonId, @RequestParam LessonRequest lessonRequest){
+
+        return null;
+    }
+
+
+
+
 }

@@ -14,6 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
+
 @Service
 @RequiredArgsConstructor
 public class LessonService {
@@ -78,5 +81,11 @@ public class LessonService {
         Pageable pageable = serviceHelpers.getPageableWithProperties(page, size, sort, type);
 
         return lessonRepository.findAll(pageable).map(lessonDto::mapLessonToLessonResponse);
+    }
+
+    // TODO add exception if get an empty collection
+    public Set<Lesson> getLessonByLessonIdSet(Set<Long> lessons) {
+       return lessonRepository.getLessonByLessonIdList(lessons);
+
     }
 }

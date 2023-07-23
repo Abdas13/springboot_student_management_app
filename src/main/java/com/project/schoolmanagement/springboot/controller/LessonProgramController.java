@@ -5,9 +5,11 @@ import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.request.LessonProgramRequest;
 import com.project.schoolmanagement.springboot.service.LessonProgramService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
@@ -57,7 +59,20 @@ public class LessonProgramController {
         return lessonProgramService.deleteLessonProgramById(id);
     }
 
+    @GetMapping("/search")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    public Page<LessonProgramResponse> search(
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size,
+            @RequestParam(value = "sort") String sort,
+            @RequestParam(value = "type") String type) {
 
-
-
+        return lessonProgramService.getAllLessonProgramByPage(page,size,sort,type);
+    }
+    @PreAuthorize("hasAnyAuthority('TEACHER','ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    @GetMapping("/getAllLessonProgramByTeacher")
+    public Set<LessonProgramResponse> getAllLessonProgramByTeacherUserName(HttpServletRequest httpServletRequest){
+        String userName = httpServletRequest.getHeader("username");
+        return lessonProgramService.getLessonProgramByTeacher(userName);
+    }
 }

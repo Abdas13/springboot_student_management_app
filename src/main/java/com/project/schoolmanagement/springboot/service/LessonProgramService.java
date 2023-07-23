@@ -11,8 +11,11 @@ import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.request.LessonProgramRequest;
 import com.project.schoolmanagement.springboot.repository.LessonProgramRepository;
 import com.project.schoolmanagement.springboot.utility.Messages;
+import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import com.project.schoolmanagement.springboot.utility.TimeControl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +34,8 @@ public class LessonProgramService {
 
     private final EducationTermService educationTermService;
     private final LessonProgramDto lessonProgramDto;
+
+    private final ServiceHelpers serviceHelpers;
     public ResponseMessage<LessonProgramResponse> saveLessonProgram(LessonProgramRequest lessonProgramRequest) {
 
         Set<Lesson> lessons = lessonService.getLessonByLessonIdSet(lessonProgramRequest.getLessonIdList());
@@ -109,5 +114,22 @@ public class LessonProgramService {
         if (lessonProgram.isEmpty()){
             throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_LESSON_PROGRAM_MESSAGE));
         }
+    }
+
+    public Page<LessonProgramResponse> getAllLessonProgramByPage(int page, int size, String sort, String type) {
+
+        Pageable pageable = serviceHelpers.getPageableWithProperties(page, size, sort, type);
+
+        return lessonProgramRepository.findAll(pageable).map(lessonProgramDto::mapLessonProgramToLessonProgramResponse);
+    }
+
+    // TODO add a validation for empty collection and send a meaningful response
+    public Set<LessonProgramResponse> getLessonProgramByTeacher(String userName) {
+        return lessonProgramRepository.getLessonProgramByTeachersUsername(userName)
+                .stream()
+                .map(lessonProgramDto::mapLessonProgramToLessonProgramResponse)
+                .collect(Collectors.toSet());
+
+
     }
 }

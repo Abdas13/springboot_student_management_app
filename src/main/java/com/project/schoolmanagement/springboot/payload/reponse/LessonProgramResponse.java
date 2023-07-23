@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 @Data
@@ -22,9 +23,9 @@ public class LessonProgramResponse {
 
     private Long lessonProgramId;
     private Day day;
-    private LocalDate startTime;
-    private LocalDate stopTime;
-    private Set<Lesson> lessonName;
+    private LocalTime startTime;
+    private LocalTime stopTime;
+    private Set<Lesson> lessons;
     private EducationTerm educationTerm;
     private Set<TeacherResponse> teachers;
     private Set<StudentResponse> students;

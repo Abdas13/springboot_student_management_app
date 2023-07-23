@@ -6,17 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.schoolmanagement.springboot.entity.enums.Day;
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
@@ -42,23 +39,23 @@ public class LessonProgram implements Serializable {
             joinColumns = @JoinColumn(name = "lessonprogram_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id")
     )
-    private Set<Lesson> lesson;
+    private Set<Lesson> lessons;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private EducationTerm educationTerm;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @ManyToMany(mappedBy = "lessonProgramList", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "lessonsProgramList", fetch = FetchType.EAGER)
     private Set<Teacher> teachers;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @ManyToMany(mappedBy = "lessonProgramList", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "lessonsProgramList", fetch = FetchType.EAGER)
     private Set<Student> students ;
 
     @PreRemove
     private void removeLessonProgramFromStudent(){
-        teachers.forEach(teacher -> teacher.getLessonProgramList().remove(this));
-        students.forEach(student -> student.getLessonProgramList().remove(this));
+        teachers.forEach(teacher -> teacher.getLessonsProgramList().remove(this));
+        students.forEach(student -> student.getLessonsProgramList().remove(this));
     }
 
 

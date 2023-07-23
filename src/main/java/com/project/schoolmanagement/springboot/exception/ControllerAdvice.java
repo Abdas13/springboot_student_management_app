@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice {
 
-    Error error;
+    private Error error;
 
     @ExceptionHandler(value = {ResourceNotFoundException.class})
     public ResponseEntity<Error> resourceNotFoundException(ResourceNotFoundException ex) {
@@ -19,6 +19,7 @@ public class ControllerAdvice {
 
         return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(value = ConflictException.class)
     public ResponseEntity<Error> alreadyExists(ConflictException ex){
         error = new Error();
 

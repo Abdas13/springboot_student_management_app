@@ -30,7 +30,7 @@ public class LessonProgramRequest {
     private LocalTime stopTime;
 
     @NotNull(message="Please select the lesson")
-    @Size(min=1, message ="Lesson must not be empty")
+    @Size(min=1, message ="Lesson should not be empty")
     private Set<Long> lessonIdList;
 
     @NotNull(message="Please enter education term")

@@ -25,9 +25,8 @@ public class Lesson {
     private Integer creditScore;
 
     private Boolean isCompulsory;
-
     @JsonIgnore
-    @ManyToMany(mappedBy = "lesson")
+    @ManyToMany(mappedBy = "lessons")
     private Set<LessonProgram> lessonPrograms;
 
 

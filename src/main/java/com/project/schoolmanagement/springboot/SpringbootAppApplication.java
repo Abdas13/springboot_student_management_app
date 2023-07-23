@@ -17,7 +17,6 @@ public class SpringbootAppApplication implements CommandLineRunner {
 
 	private final UserRoleService userRoleService;
 	private final AdminService adminService;
-
 	private final PasswordEncoder passwordEncoder;
 	public SpringbootAppApplication(UserRoleService userRoleService, AdminService adminService, PasswordEncoder passwordEncoder){
 		this.userRoleService = userRoleService;

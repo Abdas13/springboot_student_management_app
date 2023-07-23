@@ -7,6 +7,7 @@ import com.project.schoolmanagement.springboot.security.jwt.JwtUtils;
 import com.project.schoolmanagement.springboot.security.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,6 +32,7 @@ public class AuthController {
     public final AuthenticationManager authenticationManager;
 
     @PostMapping("/login")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<AuthResponse> authenticationUser(@RequestBody @Valid LoginRequest loginRequest){
        String username = loginRequest.getUsername();
        String password = loginRequest.getPassword();

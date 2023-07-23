@@ -21,7 +21,7 @@ public class EducationTermController {
     private final EducationTermService educationTermService;
 
     @PostMapping("/save")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
     public ResponseMessage<EducationTermResponse> saveEducationTerm(@RequestBody @Valid EducationTermRequest educationTermRequest){
 
         return educationTermService.saveEducationTerm(educationTermRequest);

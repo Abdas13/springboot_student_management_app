@@ -32,7 +32,6 @@ public class DeanController {
     @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
     public ResponseMessage<DeanResponse> update(@RequestBody @Valid DeanRequest deanRequest,
                                                 @PathVariable Long userId){
-
         return deanService.update(deanRequest, userId);
     }
 

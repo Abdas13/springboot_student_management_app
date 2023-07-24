@@ -21,12 +21,12 @@ public class JwtUtils {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
 
-    //@Value("${backendapi.app.jwtExpirationMs}")
-    @Value("8640000")
+    @Value("${backendapi.app.jwtExpirationMs}")
+   // @Value("8640000")
     private long jwtExpirationMs;
 
-    //@Value("${backendapi.app.jwtSecret}")
-    @Value("schoolmanagementproject")
+    @Value("${backendapi.app.jwtSecret}")
+   // @Value("schoolmanagementproject")
     private String jwtSecret;
 
     public String generateJwtToken(Authentication authentication){

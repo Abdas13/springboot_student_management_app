@@ -129,7 +129,15 @@ public class LessonProgramService {
                 .stream()
                 .map(lessonProgramDto::mapLessonProgramToLessonProgramResponse)
                 .collect(Collectors.toSet());
+    }
 
+    public Set<LessonProgram> getLessonProgramById(Set<Long> lessonIdSet){
 
+        Set<LessonProgram> lessonPrograms = lessonProgramRepository.getLessonProgramByLessonProgramIdList(lessonIdSet);
+
+        if (lessonPrograms.isEmpty()){
+            throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_LESSON_PROGRAM_MESSAGE));
+        }
+        return lessonPrograms;
     }
 }

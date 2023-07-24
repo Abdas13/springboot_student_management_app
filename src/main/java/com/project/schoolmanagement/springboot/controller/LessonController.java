@@ -57,6 +57,8 @@ public class LessonController {
     }
     // TODO updateLessonById
 
+    @PutMapping("/updateLesson")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public ResponseMessage<LessonResponse> updateLesson(@PathVariable Long lessonId, @RequestParam LessonRequest lessonRequest){
 
         return null;

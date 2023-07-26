@@ -8,7 +8,7 @@ import com.project.schoolmanagement.springboot.payload.request.LessonRequest;
 import com.project.schoolmanagement.springboot.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +20,7 @@ import java.util.Set;
 public class LessonController {
     private final LessonService lessonService;
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
+   // @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
     @PostMapping("/save")
     public ResponseMessage<LessonResponse> saveLesson(@RequestBody @Valid LessonRequest lessonRequest){
 
@@ -28,20 +28,20 @@ public class LessonController {
 
     }
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
+   // @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
     public ResponseMessage<?> deleteLesson(@PathVariable Long id){
 
         return lessonService.deleteLessonById(id);
 
     }
     @GetMapping("/getLessonByName")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
+   // @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
     public ResponseMessage<LessonResponse> getLessonByLessonName(@RequestParam String lessonName){
 
         return lessonService.getLessonByLessonName(lessonName);
     }
     @GetMapping("/search")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+   // @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public Page<LessonResponse> search(
             @RequestParam(value = "page") int page,
             @RequestParam(value = "size") int size,
@@ -51,7 +51,7 @@ public class LessonController {
     }
 
     @GetMapping("/getLessonByLessonId")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+   // @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public Set<Lesson> getAllLessonsByLessonId(@RequestParam (name = "lessonId") Set<Long> idSet){
        return  lessonService.getLessonByLessonIdSet(idSet);
     }

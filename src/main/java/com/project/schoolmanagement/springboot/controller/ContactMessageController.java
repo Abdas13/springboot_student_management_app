@@ -26,7 +26,7 @@ public class ContactMessageController {
         return contactMessageService.save(contactMessageRequest);
     }
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public Page<ContactMessageResponse> getAll(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
@@ -37,7 +37,7 @@ public class ContactMessageController {
 
     }
     @GetMapping("/searchByEmail")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public Page<ContactMessageResponse> searchByEmail(
             @RequestParam(value = "email") String email,
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -48,7 +48,7 @@ public class ContactMessageController {
         return contactMessageService.searchByEmail(email, page, size, sort, type);
     }
     @GetMapping("/searchBySubject")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public Page<ContactMessageResponse> searchBySubject(
             @RequestParam(value = "subject") String subject,
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -59,13 +59,13 @@ public class ContactMessageController {
         return contactMessageService.searchBySubject(subject, page, size, sort, type);
     }
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public ResponseMessage deleteMessageById(@PathVariable Long id){
         return contactMessageService.deleteMessageById(id);
     }
 
     @PutMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public ResponseMessage<ContactMessageResponse> updateMessageById(@PathVariable Long id,
                                                                      @RequestBody @Valid ContactMessageRequest contactMessageRequest){
         return contactMessageService.updateContactMessage(id, contactMessageRequest);

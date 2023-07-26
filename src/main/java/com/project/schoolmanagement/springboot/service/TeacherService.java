@@ -3,18 +3,24 @@ package com.project.schoolmanagement.springboot.service;
 import com.project.schoolmanagement.springboot.entity.concretes.LessonProgram;
 import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
 import com.project.schoolmanagement.springboot.entity.enums.RoleType;
+import com.project.schoolmanagement.springboot.exception.ResourceNotFoundException;
 import com.project.schoolmanagement.springboot.payload.mappers.TeacherDto;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
 import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.repository.TeacherRepository;
+import com.project.schoolmanagement.springboot.utility.Messages;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +59,57 @@ public class TeacherService {
                 .httpStatus(HttpStatus.CREATED)
                 .object(teacherDto.mapTeacherToTeacherResponse(savedTeacher))
                 .build();
+    }
+
+    public List<TeacherResponse> getAllTeachers() {
+
+        return teacherRepository.findAll()
+                .stream()
+                .map(teacherDto::mapTeacherToTeacherResponse)
+                .collect(Collectors.toList());
+    }
+
+    public List<TeacherResponse> getTeacherByName(String teacherName) {
+
+        return teacherRepository.getTeachersByNameContaining(teacherName)
+                .stream()
+                .map(teacherDto::mapTeacherToTeacherResponse)
+                .toList();
+    }
+
+    public ResponseMessage deleteTeacherById(Long id) {
+
+        isTeacherExist(id);
+
+        teacherRepository.deleteById(id);
+
+        return ResponseMessage.builder()
+                .message("teacher deleted successfully")
+                .httpStatus(HttpStatus.OK)
+                .build();
+
+    }
+    private void isTeacherExist(Long id) {
+
+        teacherRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException(Messages.NOT_FOUND_USER_MESSAGE));
+    }
+    public ResponseMessage<TeacherResponse> getTeacherById(Long id){
+
+        isTeacherExist(id);
+
+        return ResponseMessage.<TeacherResponse>builder()
+                .object(teacherDto.mapTeacherToTeacherResponse(teacherRepository.findById(id).get()))
+                .message("Teacher found")
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    public Page<TeacherResponse> findTeacherByPage(int page, int size, String sort, String type) {
+
+        Pageable pageable = serviceHelpers.getPageableWithProperties(page, size, sort, type);
+
+        return teacherRepository.findAll(pageable).map(teacherDto::mapTeacherToTeacherResponse);
 
     }
 }

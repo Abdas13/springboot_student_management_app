@@ -61,4 +61,14 @@ public class TeacherController extends User {
             @RequestParam(value = "type") String type) {
         return teacherService.findTeacherByPage(page, size, sort, type);
     }
+    @PutMapping("/update/{userId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    public ResponseMessage<TeacherResponse> updateTeacher(@RequestBody @Valid TeacherRequest teacherRequest,
+                                                          @PathVariable Long userId){
+
+        return teacherService.updateTeacher(teacherRequest, userId);
+    }
+
+
+
 }

@@ -45,8 +45,8 @@ public class TeacherDto {
     public Teacher mapTeacherRequestToUpdatedTeacher(TeacherRequest teacherRequest, Long id){
 
         Teacher teacher = mapTeacherRequestToTeacher(teacherRequest);
-
         teacher.setId(id);
+
         return teacher;
     }
 }

@@ -8,6 +8,8 @@ import com.project.schoolmanagement.springboot.repository.AdvisoryTeacherReposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AdvisoryTeacherService {
@@ -24,5 +26,27 @@ public class AdvisoryTeacherService {
 
         advisoryTeacherRepository.save(advisoryTeacher);
 
+    }
+
+    public void updateAdvisoryTeacher(boolean status, Teacher teacher) {
+
+        Optional<AdvisoryTeacher> advisoryTeacher = advisoryTeacherRepository.getAdvisoryTeacherByTeacher_Id(teacher.getId());
+
+        AdvisoryTeacher.AdvisoryTeacherBuilder advisoryTeacherBuilder =
+               AdvisoryTeacher.builder()
+                       .teacher(teacher)
+                       .userRole(userRoleService.getUserRole(RoleType.ADVISORY_TEACHER));
+
+        //do we really have an advisory teacher in DB
+        if(advisoryTeacher.isPresent()){
+            //will be this new updated teacher really an advisory teacher
+            if(status){
+                advisoryTeacherBuilder.id(advisoryTeacher.get().getId());
+                advisoryTeacherRepository.save(advisoryTeacherBuilder.build());
+            } else {
+                //these teacher is not advisory teacher anymore
+                advisoryTeacherRepository.deleteById(advisoryTeacher.get().getId());
+            }
+        }
     }
 }

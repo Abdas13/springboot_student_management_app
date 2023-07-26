@@ -1,6 +1,7 @@
 package com.project.schoolmanagement.springboot.entity.concretes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.schoolmanagement.springboot.entity.abstracts.User;
 import javax.persistence.*;
 import lombok.*;
@@ -20,6 +21,7 @@ public class Teacher extends User {
 
 
     // TODO learn about cascade types and orphanRemoval
+    @JsonIgnore
     @OneToOne(mappedBy = "teacher", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private AdvisoryTeacher advisoryTeacher;
 
@@ -32,6 +34,7 @@ public class Teacher extends User {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.REMOVE)
     private List<StudentInfo> studentInfos;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "teacher_lessonprogram",

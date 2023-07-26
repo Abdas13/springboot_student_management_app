@@ -1,5 +1,6 @@
-package com.project.schoolmanagement.springboot.payload.request.abstracts;
+package com.project.schoolmanagement.springboot.payload.request;
 
+import com.project.schoolmanagement.springboot.payload.request.abstracts.BaseUserRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @SuperBuilder
-public class TeacherRequest extends BaseUserRequest{
+public class TeacherRequest extends BaseUserRequest {
 
     @NotNull(message = "Please select Lesson")
     private Set<Long> lessonsIdList;

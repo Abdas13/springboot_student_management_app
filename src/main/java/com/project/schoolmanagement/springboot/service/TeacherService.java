@@ -1,13 +1,12 @@
 package com.project.schoolmanagement.springboot.service;
 
-import com.project.schoolmanagement.springboot.entity.concretes.AdvisoryTeacher;
 import com.project.schoolmanagement.springboot.entity.concretes.LessonProgram;
 import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
 import com.project.schoolmanagement.springboot.entity.enums.RoleType;
 import com.project.schoolmanagement.springboot.payload.mappers.TeacherDto;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
-import com.project.schoolmanagement.springboot.payload.request.abstracts.TeacherRequest;
+import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.repository.TeacherRepository;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import lombok.RequiredArgsConstructor;

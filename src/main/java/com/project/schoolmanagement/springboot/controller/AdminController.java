@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,7 +23,7 @@ public class AdminController {
 
     private final AdminService adminService;
 
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody @Valid AdminRequest adminRequest){
 
@@ -31,7 +31,7 @@ public class AdminController {
     }
 
     @GetMapping("/getAll")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<Page<Admin>> getAll(
             @RequestParam (value = "page", defaultValue = "0") int page,
             @RequestParam (value = "size", defaultValue = "10") int size,
@@ -52,7 +52,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<String> delete(@PathVariable Long id){
 
 

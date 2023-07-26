@@ -2,7 +2,7 @@ package com.project.schoolmanagement.springboot.payload.mappers;
 
 import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
-import com.project.schoolmanagement.springboot.payload.request.abstracts.TeacherRequest;
+import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 

@@ -7,7 +7,7 @@ import com.project.schoolmanagement.springboot.payload.request.EducationTermRequ
 import com.project.schoolmanagement.springboot.service.EducationTermService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,13 +21,13 @@ public class EducationTermController {
     private final EducationTermService educationTermService;
 
     @PostMapping("/save")
-    //@PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER')")
     public ResponseMessage<EducationTermResponse> saveEducationTerm(@RequestBody @Valid EducationTermRequest educationTermRequest){
 
         return educationTermService.saveEducationTerm(educationTermRequest);
     }
 
-    //@PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
     @GetMapping("/{id}")
     public EducationTermResponse getEducationTermById(@PathVariable Long id){
 
@@ -35,12 +35,12 @@ public class EducationTermController {
 
     }
     @GetMapping("/getAll")
-    //@PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
     public List<EducationTermResponse> getAllEducationTerms(){
          return educationTermService.getAllEducationTerms();
     }
     @GetMapping("search")
-   // @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
     public Page<EducationTermResponse> getAllEducationTermsByPage(
             @RequestParam (value = "page",defaultValue = "0") int page,
             @RequestParam(value = "size",defaultValue = "10") int size,
@@ -52,13 +52,13 @@ public class EducationTermController {
     }
 
     @DeleteMapping("/delete/{id}")
-   // @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'ASSISTANT_MANAGER', 'TEACHER')")
     public ResponseMessage<?> deleteEducationTermById(@PathVariable Long id){
         return educationTermService.deleteEducationTermById(id);
     }
 
     @PutMapping("/update/{id}")
-    //@PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     public ResponseMessage<EducationTermResponse> updateEducationTerm(@PathVariable Long id,
                                                                       @RequestBody @Valid EducationTermRequest educationTermRequest){
 

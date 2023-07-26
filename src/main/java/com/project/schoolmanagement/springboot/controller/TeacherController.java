@@ -3,7 +3,7 @@ package com.project.schoolmanagement.springboot.controller;
 import com.project.schoolmanagement.springboot.entity.abstracts.User;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
-import com.project.schoolmanagement.springboot.payload.request.abstracts.TeacherRequest;
+import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

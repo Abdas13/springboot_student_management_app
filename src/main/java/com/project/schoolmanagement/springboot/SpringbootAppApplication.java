@@ -42,7 +42,7 @@ public class SpringbootAppApplication implements CommandLineRunner {
 			AdminRequest adminRequest  = new AdminRequest();
 			adminRequest.setUsername("Admin");
 			adminRequest.setSsn("987-99-9999");
-//			adminRequest.setPassword(passwordEncoder.encode("Ankara06"));
+			adminRequest.setPassword("Ankara06");
 			adminRequest.setName("Lars");
 			adminRequest.setLastname("Urich");
 			adminRequest.setPhoneNumber("555-444-4321");

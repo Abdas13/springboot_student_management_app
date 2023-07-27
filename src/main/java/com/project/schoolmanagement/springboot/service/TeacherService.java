@@ -7,9 +7,11 @@ import com.project.schoolmanagement.springboot.exception.ResourceNotFoundExcepti
 import com.project.schoolmanagement.springboot.payload.mappers.TeacherDto;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
+import com.project.schoolmanagement.springboot.payload.request.ChooseLessonTeacherRequest;
 import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.repository.TeacherRepository;
 import com.project.schoolmanagement.springboot.utility.CheckParameterUpdateMethod;
+import com.project.schoolmanagement.springboot.utility.CheckSameLessonProgram;
 import com.project.schoolmanagement.springboot.utility.Messages;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +37,8 @@ public class TeacherService {
 
     private final TeacherRepository teacherRepository;
     private final AdvisoryTeacherService advisoryTeacherService;
+
+    private final CheckSameLessonProgram checkSameLessonProgram;
 
     public ResponseMessage<TeacherResponse> saveTeacher(TeacherRequest teacherRequest) {
 
@@ -118,7 +122,7 @@ public class TeacherService {
 
         Set<LessonProgram> lessonPrograms = lessonProgramService.getLessonProgramById(teacherRequest.getLessonsIdList());
 
-        if (CheckParameterUpdateMethod.checkUniquePropertiesForTeacher(teacher, teacherRequest)){
+        if (!CheckParameterUpdateMethod.checkUniquePropertiesForTeacher(teacher, teacherRequest)){
             serviceHelpers.checkDuplicate(teacherRequest.getUsername(),
                     teacherRequest.getSsn(),
                     teacherRequest.getPhoneNumber(),
@@ -135,6 +139,26 @@ public class TeacherService {
                 .object(teacherDto.mapTeacherToTeacherResponse(savedTeacher))
                 .message("Teacher successfully updated")
                 .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    public ResponseMessage<TeacherResponse> chooseLesson(ChooseLessonTeacherRequest chooseLessonTeacherRequest) {
+
+        Teacher teacher = isTeacherExist(chooseLessonTeacherRequest.getTeacherId());
+
+        Set<LessonProgram> lessonPrograms = lessonProgramService.getLessonProgramById(chooseLessonTeacherRequest.getLessonProgramId());
+
+        Set<LessonProgram> teachersLessonProgram = teacher.getLessonsProgramList();
+
+        checkSameLessonProgram.checkLessonPrograms(teachersLessonProgram, lessonPrograms);
+        lessonPrograms.addAll(lessonPrograms);
+        teacher.setLessonsProgramList(teachersLessonProgram);
+        Teacher updatedTeacher = teacherRepository.save(teacher);
+
+        return ResponseMessage.<TeacherResponse>builder()
+                .message("Lesson Program added to the teacher")
+                .httpStatus(HttpStatus.CREATED)
+                .object(teacherDto.mapTeacherToTeacherResponse(updatedTeacher))
                 .build();
     }
 }

@@ -12,4 +12,5 @@ public interface DeanRepository extends JpaRepository<Dean, Long> {
     boolean existsByPhoneNumber(String phoneNumber);
 
     Dean findByUsernameEquals(String username);
+
 }

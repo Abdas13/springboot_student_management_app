@@ -3,8 +3,10 @@ package com.project.schoolmanagement.springboot.service;
 import com.project.schoolmanagement.springboot.entity.concretes.AdvisoryTeacher;
 import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
 import com.project.schoolmanagement.springboot.entity.enums.RoleType;
+import com.project.schoolmanagement.springboot.exception.ResourceNotFoundException;
 import com.project.schoolmanagement.springboot.payload.mappers.AdvisoryTeacherDto;
 import com.project.schoolmanagement.springboot.repository.AdvisoryTeacherRepository;
+import com.project.schoolmanagement.springboot.utility.Messages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +50,10 @@ public class AdvisoryTeacherService {
                 advisoryTeacherRepository.deleteById(advisoryTeacher.get().getId());
             }
         }
+    }
+    public AdvisoryTeacher getAdvisoryTeacherById(Long advisoryTeacherId){
+
+        return advisoryTeacherRepository.findById(advisoryTeacherId).orElseThrow(
+                ()-> new ResourceNotFoundException(String.format(Messages.NOT_FOUND_ADVISOR_MESSAGE,advisoryTeacherId)));
     }
 }

@@ -4,6 +4,7 @@ import com.project.schoolmanagement.springboot.entity.abstracts.User;
 import com.project.schoolmanagement.springboot.payload.reponse.LessonResponse;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
+import com.project.schoolmanagement.springboot.payload.request.ChooseLessonTeacherRequest;
 import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.service.TeacherService;
 import lombok.Getter;
@@ -67,6 +68,13 @@ public class TeacherController extends User {
                                                           @PathVariable Long userId){
 
         return teacherService.updateTeacher(teacherRequest, userId);
+    }
+
+    @PostMapping("/chooseLesson")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    public ResponseMessage<TeacherResponse> chooseLesson(@RequestBody @Valid ChooseLessonTeacherRequest chooseLessonTeacherRequest){
+
+        return teacherService.chooseLesson(chooseLessonTeacherRequest);
     }
 
 

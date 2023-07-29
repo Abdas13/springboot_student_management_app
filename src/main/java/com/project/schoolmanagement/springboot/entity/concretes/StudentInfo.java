@@ -41,6 +41,10 @@ public class StudentInfo {
     @Enumerated(EnumType.STRING)
     private Note letterGrade;
 
+    @ManyToOne
+    @JsonIgnoreProperties("lesson")
+    private Lesson lesson;
+
     @OneToOne
     private EducationTerm educationTerm;
 

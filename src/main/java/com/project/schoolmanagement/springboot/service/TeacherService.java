@@ -94,7 +94,7 @@ public class TeacherService {
                 .build();
 
     }
-    private Teacher isTeacherExist(Long id) {
+    public Teacher isTeacherExist(Long id) {
 
         return teacherRepository.findById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(Messages.NOT_FOUND_USER_MESSAGE));
@@ -160,5 +160,13 @@ public class TeacherService {
                 .httpStatus(HttpStatus.CREATED)
                 .object(teacherDto.mapTeacherToTeacherResponse(updatedTeacher))
                 .build();
+    }
+
+    public Teacher getTeacherByUsername(String username){
+
+        if (!teacherRepository.existsByUsername(username)){
+            throw new ResourceNotFoundException(Messages.NOT_FOUND_USER_MESSAGE);
+        }
+        return teacherRepository.getTeachersByUsername(username);
     }
 }

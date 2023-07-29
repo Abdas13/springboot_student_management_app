@@ -6,12 +6,14 @@ import com.project.schoolmanagement.springboot.entity.enums.RoleType;
 import com.project.schoolmanagement.springboot.exception.ResourceNotFoundException;
 import com.project.schoolmanagement.springboot.payload.mappers.AdvisoryTeacherDto;
 import com.project.schoolmanagement.springboot.payload.reponse.AdvisorTeacherResponse;
+import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.repository.AdvisoryTeacherRepository;
 import com.project.schoolmanagement.springboot.utility.Messages;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -81,4 +83,24 @@ public class AdvisoryTeacherService {
                 .findAll(pageable)
                 .map(advisoryTeacherDto::mapAdvisorTeacherToAdvisorTeacherResponse);
     }
+
+    // TODO delete is not working.
+    public ResponseMessage deleteAdvisorTeacherById(Long id) {
+
+        AdvisoryTeacher advisoryTeacher = getAdvisoryTeacherById(id);
+        advisoryTeacherRepository.deleteById(advisoryTeacher.getId());
+
+        return ResponseMessage.builder()
+                .message("advisorTeacher deleted")
+                .httpStatus(HttpStatus.OK)
+                .build();
+
+    }
+
+//    private AdvisoryTeacher isAdvisorTeacherExistById(Long id) {
+//
+//        return advisoryTeacherRepository.findById(id).orElseThrow(
+//                ()->new ResourceNotFoundException(Messages.NOT_FOUND_USER_MESSAGE));
+//
+//    }
 }

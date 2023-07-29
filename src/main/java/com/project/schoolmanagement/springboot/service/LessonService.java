@@ -53,12 +53,13 @@ public class LessonService {
        }else
            throw new ConflictException(String.format(Messages.ALREADY_REGISTER_LESSON_MESSAGE, lessonName));
     }
-    private void isLessonExistById(Long id) {
+    public Lesson isLessonExistById(Long id) {
 
-        lessonRepository.findById(id).orElseThrow(()-> {
+        return lessonRepository.findById(id).orElseThrow(()-> {
 
                     throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_LESSON_MESSAGE, id));
                 });
+
     }
 
     public ResponseMessage<?> deleteLessonById(Long id) {

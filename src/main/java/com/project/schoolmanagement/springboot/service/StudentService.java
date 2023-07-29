@@ -77,7 +77,7 @@ public class StudentService {
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
-    private Student isStudentExist(Long studentId) {
+    public Student isStudentExist(Long studentId) {
 
         return studentRepository.findById(studentId).orElseThrow(
                 ()-> new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER_MESSAGE,studentId)));

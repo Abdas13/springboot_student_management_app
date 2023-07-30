@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StudentInfoResponse {
 
-    private Long Id;
+    private Long id;
     private Double midTermExam;
     private Double finalExam;
     private Integer absentee;

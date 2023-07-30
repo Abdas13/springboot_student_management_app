@@ -19,7 +19,7 @@ public class StudentInfoRequest {
     @DecimalMax("100.0")
     @DecimalMin("0.0")
     @NotNull(message = "Please enter midterm exam")
-    private Double midTermExam;
+    private Double midtermExam;
 
     @DecimalMax("100.0")
     @DecimalMin("0.0")

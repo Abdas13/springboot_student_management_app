@@ -103,4 +103,14 @@ public class AdvisoryTeacherService {
 //                ()->new ResourceNotFoundException(Messages.NOT_FOUND_USER_MESSAGE));
 //
 //    }
+
+    public AdvisoryTeacher getAdvisorTeacherByUsername(String username){
+        advisoryTeacherRepository.findByTeacher_UsernameEquals(username)
+                .orElseThrow(
+                        ()-> new ResourceNotFoundException(String.format(Messages.NOT_FOUND_ADVISOR_MESSAGE_WITH_USERNAME)));
+
+
+
+    }
+
 }

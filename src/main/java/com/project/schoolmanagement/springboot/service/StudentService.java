@@ -197,12 +197,17 @@ public class StudentService {
                 .build();
     }
 
-    private Student isStudentsExistByUsername(String username) {
+    public Student isStudentsExistByUsername(String username) {
         Student student = studentRepository.findByUsernameEquals(username);
 
         if (student.getId()==null){
             throw new ResourceNotFoundException(Messages.NOT_FOUND_USER_MESSAGE);
         }
         return student;
+    }
+
+    public List<Student> getStudentsById(Long[] studentIds){
+        return studentRepository.findByIdsEquals(studentIds);
+
     }
 }

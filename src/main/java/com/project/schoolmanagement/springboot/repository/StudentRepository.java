@@ -35,4 +35,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student>getStudentByNameContaining(String studentName);
 
     boolean existsByIdEquals(Long id);
+
+    @Query("SELECT s FROM Student s WHERE s.id IN :id")
+    List<Student> findByIdsEquals(Long[] id);
 }

@@ -105,12 +105,8 @@ public class AdvisoryTeacherService {
 //    }
 
     public AdvisoryTeacher getAdvisorTeacherByUsername(String username){
-        advisoryTeacherRepository.findByTeacher_UsernameEquals(username)
+       return advisoryTeacherRepository.findByTeacher_UsernameEquals(username)
                 .orElseThrow(
-                        ()-> new ResourceNotFoundException(String.format(Messages.NOT_FOUND_ADVISOR_MESSAGE_WITH_USERNAME)));
-
-
-
+                        ()-> new ResourceNotFoundException(Messages.NOT_FOUND_ADVISOR_MESSAGE_WITH_USERNAME));
     }
-
 }

@@ -77,10 +77,17 @@ public class StudentService {
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
-    public Student isStudentExist(Long studentId) {
+    public Student isStudentExist(Long id) {
 
-        return studentRepository.findById(studentId).orElseThrow(
-                ()-> new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER_MESSAGE,studentId)));
+//        return studentRepository.findById(id).orElseThrow(
+//                ()-> new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER_MESSAGE,id)));
+
+        boolean isExist = studentRepository.existsByIdEquals(id);
+        if (!isExist){
+            throw new ResourceNotFoundException(String.format(Messages.NOT_FOUND_USER_MESSAGE,id));
+        }else {
+            return studentRepository.findById(id).get();
+        }
     }
     private int getLastNumber() {
 

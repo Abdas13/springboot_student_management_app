@@ -49,7 +49,7 @@ public class StudentInfoService {
     public ResponseMessage<StudentInfoResponse> saveStudentInfo(String teacherUsername, StudentInfoRequest studentInfoRequest) {
 
         // TODO (warn) student can not be found
-        Student student = studentService.getStudentById(studentInfoRequest.getStudentId());
+        Student student = studentService.isStudentExist(studentInfoRequest.getStudentId());
         Teacher teacher = teacherService.getTeacherByUsername(teacherUsername);
         Lesson lesson = lessonService.isLessonExistById(studentInfoRequest.getLessonId());
         EducationTerm educationTerm = educationTermService.getEducationTermById(studentInfoRequest.getEducationTermId());
@@ -198,5 +198,11 @@ public class StudentInfoService {
                 .stream()
                 .map(studentInfoDto::mapStudentInfoToStudentInfoResponse)
                 .collect(Collectors.toList());
+    }
+
+    public StudentInfoResponse findStudentInfoById(Long studentInfoId) {
+
+        return studentInfoDto.mapStudentInfoToStudentInfoResponse(isStudentInfoExistById(studentInfoId));
+
     }
 }

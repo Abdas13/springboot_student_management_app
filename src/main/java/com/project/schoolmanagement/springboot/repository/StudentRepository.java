@@ -34,4 +34,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     List<Student>getStudentByNameContaining(String studentName);
 
+    boolean existsByIdEquals(Long id);
 }

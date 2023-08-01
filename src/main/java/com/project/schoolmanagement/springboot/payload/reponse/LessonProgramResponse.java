@@ -4,6 +4,7 @@ package com.project.schoolmanagement.springboot.payload.reponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.project.schoolmanagement.springboot.entity.concretes.EducationTerm;
 import com.project.schoolmanagement.springboot.entity.concretes.Lesson;
+import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
 import com.project.schoolmanagement.springboot.entity.enums.Day;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

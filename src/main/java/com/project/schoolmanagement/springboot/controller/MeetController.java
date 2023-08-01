@@ -77,6 +77,17 @@ public class MeetController {
         return meetService.search(page, size);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
+    @GetMapping("/getAllMeetByAdvisorAsPage")
+    public ResponseEntity<Page<MeetResponse>> getAllMeetByTeacher(
+                                                            HttpServletRequest httpServletRequest,
+                                                            @RequestParam(value = "page") int page,
+                                                            @RequestParam(value = "size") int size){
+        return meetService.getAllMeetByTeacher(httpServletRequest, page, size);
+    }
+
+
+
 
 
 

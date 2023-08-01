@@ -170,4 +170,14 @@ public class MeetService {
         return meetRepository.findAll(pageable)
                 .map(meetDto::mapMeetToMeetResponse);
     }
-}
+
+    public ResponseEntity<Page<MeetResponse>> getAllMeetByTeacher(HttpServletRequest httpServletRequest, int page, int size) {
+        String username = (String) httpServletRequest.getAttribute("username");
+        AdvisoryTeacher advisoryTeacher = advisoryTeacherService.getAdvisorTeacherByUsername(username);
+        Pageable pageable = serviceHelpers.getPageableWithProperties(page, size);
+
+        return ResponseEntity.ok(meetRepository.findByAdvisoryTeacher_idEquals(advisoryTeacher.getId(), pageable)
+                .map(meetDto::mapMeetToMeetResponse));
+    }
+
+    }

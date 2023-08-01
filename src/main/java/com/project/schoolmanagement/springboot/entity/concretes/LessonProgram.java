@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.schoolmanagement.springboot.entity.enums.Day;
 import javax.persistence.*;
+
+import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
 import lombok.*;
 import java.io.Serializable;
 import java.time.LocalTime;
@@ -53,7 +55,7 @@ public class LessonProgram implements Serializable {
     private Set<Student> students ;
 
     @PreRemove
-    private void removeLessonProgramFromStudent(){
+    public void removeLessonProgramFromStudent(){
         teachers.forEach(teacher -> teacher.getLessonsProgramList().remove(this));
         students.forEach(student -> student.getLessonsProgramList().remove(this));
     }

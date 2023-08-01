@@ -34,6 +34,7 @@ public class LessonProgramDto {
                 .startTime(lessonProgram.getStartTime())
                 .stopTime(lessonProgram.getStopTime())
                 .lessons(lessonProgram.getLessons())
+                //.teachers(lessonProgram.getTeachers())
                 .build();
     }
 }

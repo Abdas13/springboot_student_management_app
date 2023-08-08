@@ -23,6 +23,9 @@ public interface StudentInfoRepository extends JpaRepository<StudentInfo, Long> 
     @Query("SELECT (count (s)>0) from StudentInfo s WHERE s.student.id= ?1")
     boolean existsByStudent_IdEquals(Long studentId);
 
+    @Override
+    boolean existsById(Long studentId);
+
     @Query("SELECT s FROM StudentInfo s WHERE s.student.id= ?1")
     List<StudentInfo>findByStudent_IdEquals(Long studentId);
 

@@ -26,7 +26,7 @@ public class EducationTerm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     @NotNull(message = "Education term should not be empty")
     private Term term;
 

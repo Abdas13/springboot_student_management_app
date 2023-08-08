@@ -34,7 +34,7 @@ public class StudentController {
 
         return studentService.changeStatus(id, status);
     }
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER', 'TEACHER')")
     @GetMapping("/getAll")
     public List<StudentResponse> getAllStudents(){
         return studentService.getAllStudents();

@@ -191,7 +191,7 @@ public class StudentInfoService {
 
         studentService.isStudentExist(studentId);
 
-        if (!studentInfoRepository.existsByStudent_IdEquals(studentId)){
+        if (!studentInfoRepository.existsById(studentId)){
             throw new ResourceNotFoundException(String.format(Messages.STUDENT_INFO_NOT_FOUND_BY_STUDENT_ID, studentId));
         }
         return studentInfoRepository.findByStudent_IdEquals(studentId)

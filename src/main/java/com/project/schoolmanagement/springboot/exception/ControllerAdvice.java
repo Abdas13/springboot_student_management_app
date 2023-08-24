@@ -1,6 +1,5 @@
 package com.project.schoolmanagement.springboot.exception;
 
-import com.project.schoolmanagement.springboot.payload.reponse.Error;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

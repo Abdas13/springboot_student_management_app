@@ -44,6 +44,7 @@ public class StudentDto {
                 .motherName(student.getMotherName())
                 .studentNumber(student.getStudentNumber())
                 .isActive(student.isActive())
+                .lessonProgramSet(student.getLessonsProgramList())
                 .build();
     }
 

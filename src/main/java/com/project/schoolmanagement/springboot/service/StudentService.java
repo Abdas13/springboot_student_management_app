@@ -167,9 +167,9 @@ public class StudentService {
         return isStudentExist(id);
     }
 
-    public List<StudentResponse> getAllAdvisoryUsername(String userName) {
+    public List<StudentResponse> getAllAdvisoryUsername(String username) {
 
-        return studentRepository.getStudentByAdvisoryTeacher_Username(userName)
+        return studentRepository.getStudentByAdvisoryTeacher_Username(username)
                 .stream()
                 .map(studentDto::mapStudentToStudentResponse)
                 .collect(Collectors.toList());

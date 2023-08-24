@@ -1,4 +1,4 @@
-package com.project.schoolmanagement.springboot.payload.reponse;
+package com.project.schoolmanagement.springboot.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

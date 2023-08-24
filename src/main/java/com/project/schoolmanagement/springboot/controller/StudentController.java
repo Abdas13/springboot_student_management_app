@@ -1,5 +1,6 @@
 package com.project.schoolmanagement.springboot.controller;
 
+import com.project.schoolmanagement.springboot.entity.concretes.AdvisoryTeacher;
 import com.project.schoolmanagement.springboot.entity.concretes.Student;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.reponse.StudentResponse;
@@ -69,7 +70,7 @@ public class StudentController {
         return studentService.search(page, size, sort, type);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER','TEACHER')")
     @GetMapping("/getStudentById")
     public Student getStudentById(@RequestParam(name = "id") Long id){
         return studentService.getStudentById(id);

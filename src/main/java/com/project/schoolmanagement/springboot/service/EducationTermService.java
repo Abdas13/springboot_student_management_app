@@ -126,5 +126,4 @@ public class EducationTermService {
                 .object(educationTermDto.mapEducationTermToEducationTermResponse(savedEducationTerm))
                 .build();
     }
-
 }

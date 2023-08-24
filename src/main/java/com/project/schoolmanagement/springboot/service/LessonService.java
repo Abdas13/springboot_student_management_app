@@ -4,7 +4,6 @@ import com.project.schoolmanagement.springboot.entity.concretes.Lesson;
 import com.project.schoolmanagement.springboot.exception.ConflictException;
 import com.project.schoolmanagement.springboot.exception.ResourceNotFoundException;
 import com.project.schoolmanagement.springboot.payload.mappers.LessonDto;
-import com.project.schoolmanagement.springboot.payload.reponse.Error;
 import com.project.schoolmanagement.springboot.payload.reponse.LessonResponse;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
 import com.project.schoolmanagement.springboot.payload.request.LessonRequest;
@@ -15,9 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.Set;
 

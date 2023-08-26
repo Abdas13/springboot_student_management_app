@@ -38,7 +38,7 @@ public class AdminController {
             @RequestParam (value = "sort", defaultValue = "name") String sort,
             @RequestParam (value = "type", defaultValue = "desc") String type
     ){
-        // TODO move this calculation to service layer
+        // TODO move this calculation to service layer ASAP
 
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort).ascending());
 

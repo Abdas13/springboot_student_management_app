@@ -1,46 +1,62 @@
 package com.project.schoolmanagement.springboot.service;
 
+import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
+import com.project.schoolmanagement.springboot.entity.enums.Gender;
 import com.project.schoolmanagement.springboot.payload.mappers.TeacherDto;
+import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
+import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.repository.TeacherRepository;
 import com.project.schoolmanagement.springboot.utility.CheckSameLessonProgram;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-@RequiredArgsConstructor
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+
+//@ExtendWith(MockitoExtension.class)  // line 55 is the same
 class TeacherServiceTest {
 
     @InjectMocks
-    private TeacherService teacherService;
+    private TeacherService mockTeacherService;
 
     @Mock
     private TeacherRepository teacherRepository;
     @Mock
-    private final LessonProgramService lessonProgramService;
+    private  LessonProgramService lessonProgramService;
     @Mock
-    private final ServiceHelpers serviceHelpers;
+    private  ServiceHelpers serviceHelpers;
     @Mock
-    private final TeacherDto teacherDto;
+    private  TeacherDto teacherDto;
     @Mock
-    private final UserRoleService userRoleService;
+    private  UserRoleService userRoleService;
     @Mock
-    private final PasswordEncoder passwordEncoder;
+    private  PasswordEncoder passwordEncoder;
     @Mock
-    private final AdvisoryTeacherService advisoryTeacherService;
+    private  AdvisoryTeacherService advisoryTeacherService;
     @Mock
-    private final CheckSameLessonProgram checkSameLessonProgram;
+    private  CheckSameLessonProgram checkSameLessonProgram;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+
     }
 
     @AfterEach
@@ -49,9 +65,32 @@ class TeacherServiceTest {
 
     @Test
     void saveTeacher() {
+
+
     }
 
     @Test
-    void getAllTeachers() {
+    void getTeacherById(Long id) {
+
+    }
+
+    @Test
+    void getAllTeachers_successTest(){
+        mockTeacherService.getAllTeachers();
+        Mockito.verify(teacherRepository,times(0)).findAll();
+
+    }
+    @Test
+    void getAllTeachers_successListTest() {
+
+        List<Teacher> teacherList = new ArrayList<>();
+        teacherList.add(new Teacher());
+        teacherList.add(new Teacher());
+        when(teacherRepository.findAll()).thenReturn(teacherList);
+        List<TeacherResponse> teacherResponseList = mockTeacherService.getAllTeachers();
+        Assertions.assertEquals(teacherList.size(),teacherResponseList.size(), "FAIL");
+
+
+
     }
 }

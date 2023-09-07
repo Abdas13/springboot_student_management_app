@@ -27,7 +27,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor  // check when and why
+@RequiredArgsConstructor
 public class StudentService {
 
     private final AdvisoryTeacherService advisoryTeacherService;

@@ -3,7 +3,6 @@ package com.project.schoolmanagement.springboot.service;
 import com.project.schoolmanagement.springboot.entity.concretes.EducationTerm;
 import com.project.schoolmanagement.springboot.entity.concretes.Lesson;
 import com.project.schoolmanagement.springboot.entity.concretes.LessonProgram;
-import com.project.schoolmanagement.springboot.exception.BadRequestException;
 import com.project.schoolmanagement.springboot.exception.ResourceNotFoundException;
 import com.project.schoolmanagement.springboot.payload.mappers.LessonProgramDto;
 import com.project.schoolmanagement.springboot.payload.reponse.LessonProgramResponse;

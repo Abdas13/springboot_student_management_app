@@ -8,7 +8,6 @@ import com.project.schoolmanagement.springboot.exception.ResourceNotFoundExcepti
 import com.project.schoolmanagement.springboot.payload.mappers.MeetDto;
 import com.project.schoolmanagement.springboot.payload.reponse.MeetResponse;
 import com.project.schoolmanagement.springboot.payload.reponse.ResponseMessage;
-import com.project.schoolmanagement.springboot.payload.reponse.StudentInfoResponse;
 import com.project.schoolmanagement.springboot.payload.request.MeetRequest;
 import com.project.schoolmanagement.springboot.payload.request.UpdateMeetRequest;
 import com.project.schoolmanagement.springboot.repository.MeetRepository;

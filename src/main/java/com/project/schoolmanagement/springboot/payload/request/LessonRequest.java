@@ -23,5 +23,4 @@ public class LessonRequest {
     private Integer creditScore;
     @NotNull(message = "Please enter")
     private Boolean isCompulsory;
-
 }

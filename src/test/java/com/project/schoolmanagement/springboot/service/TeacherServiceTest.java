@@ -1,32 +1,24 @@
 package com.project.schoolmanagement.springboot.service;
 
 import com.project.schoolmanagement.springboot.entity.concretes.Teacher;
-import com.project.schoolmanagement.springboot.entity.enums.Gender;
 import com.project.schoolmanagement.springboot.payload.mappers.TeacherDto;
 import com.project.schoolmanagement.springboot.payload.reponse.TeacherResponse;
-import com.project.schoolmanagement.springboot.payload.request.TeacherRequest;
 import com.project.schoolmanagement.springboot.repository.TeacherRepository;
 import com.project.schoolmanagement.springboot.utility.CheckSameLessonProgram;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 

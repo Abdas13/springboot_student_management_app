@@ -53,4 +53,6 @@ public abstract class User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    // abstract method
+
 }

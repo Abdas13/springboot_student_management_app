@@ -11,7 +11,6 @@ import com.project.schoolmanagement.springboot.payload.reponse.StudentInfoRespon
 import com.project.schoolmanagement.springboot.payload.request.StudentInfoRequest;
 import com.project.schoolmanagement.springboot.payload.request.UpdateStudentInfoRequest;
 import com.project.schoolmanagement.springboot.repository.StudentInfoRepository;
-import com.project.schoolmanagement.springboot.repository.StudentRepository;
 import com.project.schoolmanagement.springboot.utility.Messages;
 import com.project.schoolmanagement.springboot.utility.ServiceHelpers;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +19,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

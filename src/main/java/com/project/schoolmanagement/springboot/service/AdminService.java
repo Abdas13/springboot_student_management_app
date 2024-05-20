@@ -96,9 +96,6 @@ public class AdminService {
                 .gender(adminRequest.getGender())
                 .build();
     }
-
-
-
     public Page<Admin> getAllAdmins(Pageable pageable) {
         return adminRepository.findAll(pageable);
     }
@@ -116,11 +113,10 @@ public class AdminService {
             //TODO move this hard coded part to Messages class and call this property.
             return "Admin is deleted successfully";
         }
-
         return String.format(Messages.NOT_FOUND_USER_MESSAGE,id);
-
     }
     public long countAllAdmins(){
         return adminRepository.count();
     }
 }
+

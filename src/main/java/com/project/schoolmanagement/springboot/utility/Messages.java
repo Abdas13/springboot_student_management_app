@@ -9,7 +9,6 @@ public class Messages {
     public static final String NOT_FOUND_USER_MESSAGE = "Error: User not found with id %s" ;
     public static final String NOT_PERMITTED_METHOD_MESSAGE = "You do not have any permission to do this operation";
     public static final String ALREADY_SEND_A_MESSAGE_TODAY = "Error: You have already sent this message today";
-
     public static final String USER_MESSAGE_NOT_FOUND = "Error: User not found with this id";
 
     public static final String ALREADY_REGISTER_MESSAGE_USERNAME = "Error: User with username %s is already registered.";
